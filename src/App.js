@@ -92,16 +92,33 @@ import PropTypes from 'prop-types'
 import Son from './Son'
 export default class App extends Component{
   constructor(props) {
-    super(props)
+    super(props);
+    this.state={
+      value:'',
+      son:''
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.test = this.test.bind(this)
   }
-
+  handleChange(e){
+    console.log(this)
+    this.setState({value: e.target.value});
+  }
+  test(e){
+    this.setState({
+      son:e
+    })
+    console.log(e,'test')
+  }
   componentDidMount() {
   }
 
   render() {
     return(
       <div className={'App'}>
-        <Son name="Sara" />
+        <div>from son:{this.state.son}</div>
+        <input type='text' value={this.state.value} onChange={this.handleChange} />
+        <Son name={this.state.value} test={this.test} />
       </div>
     )
   }
