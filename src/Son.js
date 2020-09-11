@@ -20,11 +20,22 @@ export default class Son extends Component{
     }
 
     render() {
+        const num = [1,2,3];
+        const listItems = num.map((number,index) =>
+                <li key={index}>{number}</li>
+                );
         return(
             <div className={'Son'}>
                 {this.props.name}
                 <input type='text' value={this.state.value} onChange={this.handleInput} />
-                {/* <span>{this.props.test('dd')}</span> */}
+                {/* <ul>{listItems}</ul> */}
+                <ul>
+                    {
+                        num.map((number) =>
+                            <li key={number.toString()}>{number}</li>
+                        )
+                    }
+                </ul>
             </div>
         )
     }

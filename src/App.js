@@ -95,13 +95,16 @@ export default class App extends Component{
     super(props);
     this.state={
       value:'',
-      son:''
+      son:'',
+      count:0
     };
     this.handleChange = this.handleChange.bind(this);
-    this.test = this.test.bind(this)
+    this.test = this.test.bind(this);
+    this.handleSom = this.handleSom.bind(this);
+    this.incre = this.incre.bind(this)
   }
   handleChange(e){
-    console.log(this)
+    // console.log(this)
     this.setState({value: e.target.value});
   }
   test(e){
@@ -109,6 +112,17 @@ export default class App extends Component{
       son:e
     })
     console.log(e,'test')
+  }
+  incre(){
+    // this.setState({count:this.state.count + 1})
+    this.setState(state => {
+      return {count:state.count + 1}
+    })
+  }
+  handleSom(){
+    this.incre();
+    this.incre();
+    this.incre();
   }
   componentDidMount() {
   }
@@ -119,6 +133,7 @@ export default class App extends Component{
         <div>from son:{this.state.son}</div>
         <input type='text' value={this.state.value} onChange={this.handleChange} />
         <Son name={this.state.value} test={this.test} />
+        <div onClick={this.handleSom}>test{this.state.count}</div>
       </div>
     )
   }
